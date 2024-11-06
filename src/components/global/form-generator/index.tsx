@@ -27,16 +27,22 @@ export const FormGenerator = ({
     type,
     lines,
 }: FormGeneratorProps) => {
+    // Generate unique ID using name and optional label
+    const generateUniqueId = () => {
+        const base = label ? `${name}-${label}` : name;
+        return base.toLowerCase().replace(/\s+/g, '-');
+    }
+
     switch (inputType) {
         case "input":
             return (
                 <Label
                     className="flex flex-col gap-2"
-                    htmlFor={`input-${label}`}
+                    htmlFor={generateUniqueId()}
                 >
                     {label && label}
                     <Input
-                        id={`input-${label}`}
+                        id={generateUniqueId()}
                         type={type}
                         placeholder={placeholder}
                         className="bg-themeBlack border-themeGray text-themeTextGray"
@@ -56,12 +62,12 @@ export const FormGenerator = ({
         case "select":
             return (
                 <Label
-                    htmlFor={`select-${label}`}
+                    htmlFor={generateUniqueId()}
                     className="flex flex-col gap-2"
                 >
                     {label && label}
                     <select
-                        id={`select-${label}`}
+                        id={generateUniqueId()}
                         className="w-full bg-transparent border-[1px] p-3 rounded-lg"
                         {...register(name)}
                     >
@@ -91,12 +97,12 @@ export const FormGenerator = ({
             return (
                 <Label
                     className="flex flex-col gap-2"
-                    htmlFor={`input-${label}`}
+                    htmlFor={generateUniqueId()}
                 >
                     {label && label}
                     <Textarea
                         className="bg-themeBlack border-themeGray text-themeTextGray"
-                        id={`input-${label}`}
+                        id={generateUniqueId()}
                         placeholder={placeholder}
                         {...register(name)}
                         rows={lines}
