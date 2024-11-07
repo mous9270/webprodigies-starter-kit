@@ -38,6 +38,7 @@ const CreateGroupLayout = ({ children }: Props) => {
           <GlassCard className="xs:w-full lg:w-10/12 xl:w-8/12 mt-16 py-7">
             {children}
           </GlassCard>
+          <div>Hello Friend</div>
         </BackdropGradient>
       </div>
     </div>
